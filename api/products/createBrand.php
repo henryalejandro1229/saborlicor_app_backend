@@ -3,12 +3,14 @@ require "../config/database.php";
 
 class query extends Conexion {
     public function config() {
-        $id = $_GET['id'];
+        $name = $_GET['name'];
+        $description = $_GET['description'];
+        $image = $_GET['imageUrl'];
         try {
             $conexion = parent::conectar();
             $query = new MongoDB\Driver\BulkWrite;
-            $query->delete(['_id' => new MongoDB\BSON\ObjectID($id)]);
-            $conexion->executeBulkWrite($this->database_name.$this->col_categories, $query);
+            $query->insert(['name'=>$name, 'description'=>$description, 'imageUrl'=>$image]);
+            $conexion->executeBulkWrite($this->database_name.$this->col_brands, $query);
         } catch (\Throwable $th) {
             return $th->getMessage();
         }

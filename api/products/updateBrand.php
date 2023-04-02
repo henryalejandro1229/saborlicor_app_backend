@@ -6,13 +6,12 @@ class query extends Conexion {
         $id = $_GET['id'];
         $name = $_GET['name'];
         $description = $_GET['description'];
-        $sex = $_GET['categorySex'];
         $image = $_GET['imageUrl'];
         try {
             $conexion = parent::conectar();
             $query = new MongoDB\Driver\BulkWrite;
-            $query->update(['_id' => new MongoDB\BSON\ObjectID($id)], ['$set' => ['name'=>$name, 'description'=>$description, 'categorySex'=>$sex, 'imageUrl'=>$image]]);
-            $conexion->executeBulkWrite($this->database_name.$this->col_categories, $query);
+            $query->update(['_id' => new MongoDB\BSON\ObjectID($id)], ['$set' => ['name'=>$name, 'description'=>$description, 'imageUrl'=>$image]]);
+            $conexion->executeBulkWrite($this->database_name.$this->col_brands, $query);
         } catch (\Throwable $th) {
             return $th->getMessage();
         }

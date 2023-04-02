@@ -2,20 +2,17 @@
 require "../config/database.php";
 
 class getUsuarios extends Conexion {
-
     public function mostrarDatos() {
-        $id = $_GET['id'];
         try {
             $conexion = parent::conectar();
-            $query = new MongoDB\Driver\Query(['categoryID' => $id]);
-            $cursor = $conexion->executeQuery($this->database_name.$this->col_products, $query);
+            $query = new MongoDB\Driver\Query([]);
+            $cursor = $conexion->executeQuery($this->database_name.$this->col_brands, $query);
             return json_decode(json_encode($cursor->toArray()),JSON_UNESCAPED_UNICODE);
         } catch (\Throwable $th) {
             return $th->getMessage();
         }
     }
 }
-
 $obj = new getUsuarios();
-echo json_encode($obj->mostrarDatos())
+echo json_encode($obj->mostrarDatos());
 ?>

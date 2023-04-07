@@ -11,7 +11,7 @@ class query extends Conexion {
             $conexion = parent::conectar();
             $query = new MongoDB\Driver\BulkWrite;
             $query->update(['_id' => new MongoDB\BSON\ObjectID($id)], ['$set' => ['name'=>$name, 'description'=>$description, 'imageUrl'=>$image]]);
-            $conexion->executeBulkWrite($this->database_name.$this->col_brands, $query);
+            $conexion->executeBulkWrite($this->database_name.$this->col_types, $query);
         } catch (\Throwable $th) {
             return $th->getMessage();
         }

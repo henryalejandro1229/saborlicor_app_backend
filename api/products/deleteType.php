@@ -8,7 +8,7 @@ class query extends Conexion {
             $conexion = parent::conectar();
             $query = new MongoDB\Driver\BulkWrite;
             $query->delete(['_id' => new MongoDB\BSON\ObjectID($id)]);
-            $conexion->executeBulkWrite($this->database_name.$this->col_brands, $query);
+            $conexion->executeBulkWrite($this->database_name.$this->col_types, $query);
         } catch (\Throwable $th) {
             return $th->getMessage();
         }

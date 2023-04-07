@@ -4,7 +4,7 @@ class Conexion
     public $conn;
     public $database_name = "licores_de_sabor.";
     public $col_users = "users";
-    public $col_brands = "brands";
+    public $col_types = "types";
     public $col_products = "products";
 
     public function conectar()

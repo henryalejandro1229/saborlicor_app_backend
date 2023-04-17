@@ -8,9 +8,13 @@ class getUsuarios extends Conexion {
         $min = $_GET['min'];
         $max = $_GET['max'];
         $typeID = $_GET['typeID'];
+        $category = $_GET['category'];
         $params = ['tags' => new \MongoDB\BSON\Regex($txtSearch)];
         if($typeID !== '0') {
             $params += ['typeID' => $typeID];
+        }
+        if($category !== '0') {
+            $params += ['marca' => $category];
         }
         if($min >= 0 && $max >= 0) {
             $params += ['precio' => ['$gte' => intval($min), '$lte' => intval($max)]];
